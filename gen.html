@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .main-content {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .content-left,
+    .content-right {
+      flex-basis: 48%;
+    }
+
+    .content-item {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .content-item img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .content-info {
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    .pagination {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .pagination li {
+      display: inline;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <div class="content-left" id="left-content"></div>
+    <div class="content-right" id="right-content"></div>
+  </div>
+
+  <!-- Paging -->
+  <ul class="pagination" id="pagination"></ul>
+
+  <script>
+    const leftContent = document.getElementById('left-content');
+    const rightContent = document.getElementById('right-content');
+    const pagination = document.getElementById('pagination');
+    const addContentBtn = document.getElementById('add-content-btn');
+
+    let contentCounter = 0;
+
+    function addContent() {
+      const title = document.getElementById('content-title').value;
+      const description = document.getElementById('content-description').value;
+
+      const contentItem = document.createElement('div');
+      contentItem.className = 'content-item';
+
+      const image = document.createElement('img');
+      image.src = 'path-to-image.jpg';
+      image.alt = title;
+      image.setAttribute('title', description);
+
+      const contentInfo = document.createElement('div');
+      contentInfo.className = 'content-info';
+      contentInfo.textContent = `${title}: ${description}`;
+
+      contentItem.appendChild(image);
+      contentItem.appendChild(contentInfo);
+
+      if (contentCounter % 2 === 0) {
+        leftContent.appendChild(contentItem);
+      } else {
+        rightContent.appendChild(contentItem);
+      }
+
+      contentCounter++;
+
+      generatePagination();
+    }
+
+    function removeContent() {
+      const lastContentItem = document.querySelector('.content-item:last-child');
+
+      if (contentCounter % 2 === 0) {
+        leftContent.removeChild(lastContentItem);
+      } else {
+        rightContent.removeChild(lastContentItem);
+      }
+
+      contentCounter--;
+
+      generatePagination();
+    }
+
+    function generatePagination() {
+      const totalPages = Math.ceil(contentCounter / 5);
+      pagination.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = '#';
+        link.textContent = i;
+        listItem.appendChild(link);
+        pagination.appendChild(listItem);
+      }
+    }
+
+    addContentBtn.addEventListener('click', addContent);
+  </script>
+
+  <footer>
+    <p>&copy; 2023 Your Website. All rights reserved.</p>
+  </footer>
+</body>
+</html>
