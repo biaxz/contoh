@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Responsive Navigation Menu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.8);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+    
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+    
+    .logo {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 20px;
+    }
+    
+    .menu {
+      display: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .menu.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .menu li {
+      display: block;
+      margin-bottom: 10px;
+    }
+    
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    
+    .menu a:hover {
+      color: #2b72fb;
+    }
+    
+    .hamburger {
+      display: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .content {
+      padding: 20px;
+      margin-top: 80px; /* Menambahkan margin top agar konten tidak tertutupi oleh navbar */
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+    
+    /* Media Query untuk Tampilan Mobile */
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">Logo</a>
+      <div class="hamburger">&#9776;</div>
+    </div>
+    <ul class="menu">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <h1>Welcome to the World of Automotive</h1>
+    <h2>Introduction to Automotive</h2>
+    <p>
+      Automotive refers to anything related to motor vehicles. It encompasses various aspects such as design, development, manufacturing, marketing, and maintenance of automobiles. The automotive industry plays a crucial role in our modern society, providing transportation and mobility to people across the globe.
+    </p>
+    <p>
+      With advancements in technology, the automotive industry has witnessed significant innovations over the years. From conventional gasoline-powered vehicles to electric cars, autonomous driving features, and smart connectivity, the automotive landscape continues to evolve, shaping the future of transportation.
+    </p>
+  </div>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const menu = document.querySelector('.menu');
+
+    hamburger.addEventListener('click', () => {
+      menu.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>
